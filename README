@@ -1,0 +1,11 @@
+Requires Maven (http://maven.apache.org/) to be installed.
+
+To run the application run: 'mvn tomcat:run'.
+
+We support the following operations:
+- GET http://localhost:8080/squareapp/locations/ will list all 'registered' location
+- PUT http://localhost:8080/squareapp/locations/LOCATION_ID will register a new location LOCATION_ID
+- DELETE http://localhost:8080/squareapp/locations/LOCATION_ID will delete the location (if present) registered under LOCATION_ID
+- GET http://localhost:8080/squareapp/metrics will print the per response-type latency stats (mean, variance, and count) for the last 15 minutes
+
+The /locations method all require basic HTTP auth. The default username and password are "square" and "up" by default, but can be changed in the src/webapp/WEB-INF/auth.properties file.

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                             http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+
+  <filter>
+    <filter-name>authFilter</filter-name>
+    <filter-class>com.squareup.shaneal.AuthFilter</filter-class>
+  </filter>
+
+  <filter>
+    <filter-name>metricsFilter</filter-name>
+    <filter-class>com.squareup.shaneal.MetricsFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>metricsFilter</filter-name>
+    <url-pattern>/locations/*</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>authFilter</filter-name>
+    <url-pattern>/locations/*</url-pattern>
+  </filter-mapping>
+
+  <servlet>
+    <servlet-name>MetricsServlet</servlet-name>
+    <servlet-class>com.squareup.shaneal.MetricsServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet>
+    <servlet-name>LocationServlet</servlet-name>
+    <servlet-class>com.squareup.shaneal.LocationServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LocationServlet</servlet-name>
+    <url-pattern>/locations/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>MetricsServlet</servlet-name>
+    <url-pattern>/metrics</url-pattern>
+  </servlet-mapping>
+
+</web-app>
